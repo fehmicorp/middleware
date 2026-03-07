@@ -1,6 +1,6 @@
 {
   "name": "@fehmicorp/middleware",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Redis driven proxy middleware for Next.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
