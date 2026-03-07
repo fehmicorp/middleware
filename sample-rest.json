@@ -1,0 +1,125 @@
+{
+  "_id": {
+    "$oid": "692d511b6d4eec947179d1c8"
+  },
+  "status": "active",
+  "type": "auth",
+  "module": "accounts",
+  "route": "/auth/login",
+  "methods": [
+    "POST"
+  ],
+  "dbConf": "692d543f6d4eec947179d1cb",
+  "security": {
+    "authRequired": false,
+    "jwt": {
+      "enabled": true,
+      "secretSource": "dynamic",
+      "expire": "2h",
+      "refresh": {
+        "enabled": true,
+        "expire": "7d"
+      },
+      "payloadMap": {
+        "uid": "uidp",
+        "name": "fullname",
+        "roles": "roles"
+      }
+    },
+    "cookie": {
+      "enabled": true,
+      "name": "accounts_token",
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "strict",
+      "path": "/"
+    },
+    "rateLimit": {
+      "enabled": true,
+      "max": 5,
+      "window": "15m"
+    }
+  },
+  "cors": {
+    "enabled": true,
+    "origin": [
+      "https://accounts.fehmi.in"
+    ],
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "headers": [
+      "Content-Type",
+      "Authorization"
+    ],
+    "credentials": true,
+    "maxAge": 86400
+  },
+  "headers": {
+    "request": [
+      "authorization",
+      "x-device-id"
+    ],
+    "response": {
+      "X-Powered-By": "Fehmi-API"
+    }
+  },
+  "input": {
+    "required": [
+      "username"
+    ],
+    "auth": {
+      "password": "passwordhash"
+    },
+    "map": {
+      "username": [
+        "username",
+        "email",
+        "mobnumber"
+      ]
+    }
+  },
+  "query": {
+    "engine": "rest",
+    "type": "FETCH",
+    "table": "test",
+    "select": [
+      "uidp",
+      "fullname",
+      "username"
+    ],
+    "where": {
+      "or": [
+        "username",
+        "email",
+        "mobnumber"
+      ]
+    }
+  },
+  "response": {
+    "hide": [
+      "passwordhash"
+    ],
+    "include": [
+      "user",
+      "jwt"
+    ],
+    "onFailure": {
+      "message": "Invalid credentials"
+    }
+  },
+  "audit": {
+    "enabled": true,
+    "collection": "auth_logs",
+    "fields": [
+      "ip",
+      "userAgent",
+      "time"
+    ]
+  },
+  "limit": 1000,
+  "createdAt": {
+    "$date": "2025-07-22T10:00:00.000Z"
+  }
+}
