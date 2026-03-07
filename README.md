@@ -1,8 +1,3 @@
-Below is a **more professional, attractive, and knowledge-rich `README.md`** suitable for an open-source middleware project. It explains **architecture, usage, flow, and features clearly** so developers understand the value quickly when they land on the repo.
-
----
-
-```markdown
 # 🚀 Fehmi Corporation Next Proxy Middleware
 
 A powerful **Redis-driven middleware proxy layer for Next.js** that enables dynamic API routing, authentication validation, and request transformation — all directly inside Next.js middleware.

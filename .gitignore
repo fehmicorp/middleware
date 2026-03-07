@@ -5,3 +5,9 @@ package-lock.json
 .env
 .vscode
 ./*.tgz
+src
+test
+node_modules
+.git
+.gitignore
+tsconfig.json

@@ -1,7 +1,7 @@
 {
-  "name": "middleware",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@fehmicorp/middleware",
+  "version": "1.0.1",
+  "description": "Redis driven proxy middleware for Next.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -15,12 +15,25 @@
     "fehmicorp",
     "typescript",
     "server",
+    "nextjs",
+    "middleware",
+    "proxy",
+    "redis",
+    "api-gateway",
     "http",
     "https"
   ],
   "author": "Fehmi Corporation",
   "license": "MIT",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fehmicorp/middleware.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fehmicorp/middleware/issues"
+  },
+  "homepage": "https://github.com/fehmicorp/middleware",
   "dependencies": {
     "jsonwebtoken": "^9.0.0",
     "redis": "^5.10.0"
