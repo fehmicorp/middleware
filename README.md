@@ -388,3 +388,48 @@ If you want, I can also help you add **three powerful sections that make GitHub 
 
 These make your repo look like a **serious infrastructure project rather than a simple middleware library**.
 ```
+
+## 🧭 Universal Next.js Middleware (dbConf-aware)
+
+If your route config stores a `dbConf` reference (like the `sample-rest.json` file), you can now resolve both route + database configuration dynamically in one middleware.
+
+```ts
+import { createUniversalNextMiddleware } from "@fehmicorp/middleware";
+
+const middlewareEngine = createUniversalNextMiddleware({
+  basePath: "/api",
+  async routeResolver(ctx) {
+    // fetch from Redis/DB by pathname + method
+    return {
+      module: "accounts",
+      route: "/auth/login",
+      methods: ["POST"],
+      dbConf: "692d543f6d4eec947179d1cb"
+    };
+  },
+  async dbConfigResolver(dbConfId) {
+    // fetch dbConf dynamically by id
+    return {
+      id: dbConfId,
+      baseUrl: "https://accounts.internal",
+      timeoutMs: 20000,
+      headers: {
+        "x-service": "accounts"
+      }
+    };
+  }
+});
+
+export async function middleware(req: Request) {
+  return middlewareEngine.handle(req);
+}
+```
+
+Middleware response headers include:
+
+- `x-proxy-target`
+- `x-proxy-module`
+- `x-proxy-dbconf-id`
+- `x-proxy-timeout`
+
+This enables universal project-level reuse while keeping `dbConf` and route logic fully dynamic.
