@@ -95,13 +95,13 @@ This design allows:
 # 📦 Installation
 
 ```bash
-npm install next-proxy-middleware
+npm install @fehmicorp/middleware
 ````
 
 or
 
 ```bash
-yarn add next-proxy-middleware
+yarn add @fehmicorp/middleware
 ```
 
 ---
@@ -113,7 +113,7 @@ Create a middleware file in your Next.js project.
 `middleware.ts`
 
 ```ts
-import { Proxy } from "next-proxy-middleware";
+import { Proxy } from "@fehmicorp/middleware";
 
 export async function middleware(req: any) {
   return Proxy.handle(req, process.env.REDIS_URL!);
@@ -266,7 +266,7 @@ Headers injected successfully
 Use the built-in cookie helper to set authentication cookies.
 
 ```ts
-import { CookieConfig } from "next-proxy-middleware";
+import { CookieConfig } from "@fehmicorp/middleware";
 
 CookieConfig.setCookie(req, res, token, cookieConfig);
 ```
@@ -433,3 +433,22 @@ Middleware response headers include:
 - `x-proxy-timeout`
 
 This enables universal project-level reuse while keeping `dbConf` and route logic fully dynamic.
+
+
+## 📚 Package documentation
+
+- API usage and examples: [README](./README.md)
+- Universal middleware example with `dbConf`: [sample-rest.json](./sample-rest.json)
+- Publishing/release guide: [PUBLISHING.md](./PUBLISHING.md)
+
+## 🚢 Publishing
+
+This package is configured for npm publication as `@fehmicorp/middleware`.
+
+```bash
+npm run build
+npm pack
+npm publish --access public
+```
+
+> If this is your first publish from a machine, run `npm login` first.

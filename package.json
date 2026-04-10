@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "test": "npm pack"
+    "test": "npm pack",
+    "pack:check": "npm pack",
+    "publish:public": "npm publish --access public"
   },
   "keywords": [
     "proxy",
